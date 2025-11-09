@@ -1,4 +1,39 @@
 <!doctype html>
-<html>
-<h2>KERIMHAN</h2>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>KERIMHAN</title>
+<style>
+  html,body { height:100%; margin:0; background:#000; }
+  .video-wrap {
+    position:fixed; inset:0; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  video {
+    min-width:100%; min-height:100%;
+    width:auto; height:auto;
+    object-fit:cover;
+  }
+  /* isteğe bağlı: tıklayınca oynat/durdur */
+  .hint { position:fixed; left:10px; bottom:10px; color:white; font-family:system-ui; opacity:.6; }
+</style>
+</head>
+<body>
+<div class="video-wrap">
+  <video autoplay loop muted playsinline id="bgvid">
+    <source src="ssstik.io_@erolyildirim003_1762606272019.mp4" type="video/mp4">
+    KERIMHQN!!!!
+  </video>
+</div>
+<div class="hint"></div>
+
+<script>
+const v = document.getElementById('bgvid');
+document.body.addEventListener('click', ()=> {
+  v.paused ? v.play() : v.pause();
+});
+</script>
+</body>
 </html>
+
