@@ -1,39 +1,78 @@
-<!doctype html>
-<html lang="tr">
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>KERIMHAN</title>
-<style>
-  html,body { height:100%; margin:0; background:#000; }
-  .video-wrap {
-    position:fixed; inset:0; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-  }
-  video {
-    min-width:100%; min-height:100%;
-    width:auto; height:auto;
-    object-fit:cover;
-  }
-  /* isteğe bağlı: tıklayınca oynat/durdur */
-  .hint { position:fixed; left:10px; bottom:10px; color:white; font-family:system-ui; opacity:.6; }
-</style>
+    <title>File Password</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
-<body>
-<div class="video-wrap">
-  <video autoplay loop muted playsinline id="bgvid">
-    <source src="ssstik.io_@erolyildirim003_1762606272019.mp4" type="video/mp4">
-    KERIMHQN!!!!
-  </video>
-</div>
-<div class="hint"></div>
+<body style="background-color: black; color: white; font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
+    <div>
+        <h1 style="font-size: 48px; margin-bottom: 40px;">File Password</h1>
+        
+        <input type="password" id="passwordInput" style="display: block; margin: 0 auto 20px; padding: 10px; width: 200px; font-size: 16px;">
+        
+        <button onclick="hashAndFetch()" style="padding: 10px 30px; font-size: 16px; cursor: pointer; margin-bottom: 20px;">
+            Enter
+        </button>
+        
+        <div id="result" style="font-size: 14px; word-break: break-all; max-width: 400px; margin-top: 20px;"></div>
+    </div>
 
-<script>
-const v = document.getElementById('bgvid');
-document.body.addEventListener('click', ()=> {
-  v.paused ? v.play() : v.pause();
-});
-</script>
+    <script>
+        
+
+// Çözme
+        
+        async function hashAndFetch() {
+            // Textbox'dan şifreyi al
+            const password = document.getElementById('passwordInput').value;
+            
+            // MD5 hash hesapla
+            const hash = CryptoJS.MD5(password).toString();
+            
+            // Textbox'ı temizle
+            document.getElementById('passwordInput').value = "";
+            
+            // Hash ile isimli dosyayı fetch et
+            try {
+                const response = await fetch(`/${hash}`);
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    console.log(text);
+                    // CryptoJS kütüphanesini yüklemeniz gerekiyor
+                    // Şifreli metin (Base64)
+                    const ciphertext = text;
+
+                    // Kullanıcı şifresi
+                    const decrypted = CryptoJS.AES.decrypt(ciphertext, password);
+        console.log("Çözülmüş:", decrypted.toString(CryptoJS.enc.Utf8));
+                    document.documentElement.innerHTML=decrypted.toString(CryptoJS.enc.Utf8)
+
+                    
+                    // Şifre doğru mesajı göster
+                    document.getElementById('result').textContent = "Şifre doğru!";
+                    document.getElementById('result').style.color = "green";
+                } else {
+                    // Şifre yanlış mesajı göster
+                    document.getElementById('result').textContent = "Şifre yanlış!";
+                    document.getElementById('result').style.color = "red";
+                    //console.log(`Dosya bulunamadı: /${hash} - Status: ${response.status}`);
+                }
+            } catch (error) {
+                // Hata durumunda da şifre yanlış göster (veya ağ hatası)
+                document.getElementById('result').textContent = "Şifre yanlış!";
+                document.getElementById('result').style.color = "red";
+                console.error('Fetch hatası:', error);
+            }
+        }
+        
+        // Enter tuşu ile de çalışsın
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                hashAndFetch();
+            }
+        });
+    </script>
 </body>
 </html>
-
