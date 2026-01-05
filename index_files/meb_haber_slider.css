@@ -1,0 +1,187 @@
+ #box1{clear:both;}
+    #haberbant{margin:0px;padding:0px;}
+    #haberbant ol{list-style-type:none;}
+    #top{margin-bottom:10px;}
+    #aaa{margin-right:9px;width:576px;padding:0px;float:right;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
+    #resim{float:left;padding:0px;}
+    #resim li{float:left;}
+    @-moz-document url-prefix() { #resim li{margin-left:-7px;} }
+    #resim img{height:324px;width:576px;padding:0;margin:0;}
+    
+    #icerik{width:115px;float:left;}
+    #icerik li{margin:4px 0 4px 0;padding:0;padding-right:0px;height:60.5px;}
+    #icerik li img{border:1px solid #999;margin:0;width:100px;height:58.5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;}
+    @-moz-document url-prefix() { #icerik li img{margin-left:-7px;} }
+    #icerik li:hover,#icerik li.aktif{background: #e33c39;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;}
+    #yazi{clear:both;width:563px;height:45px;overflow:hidden;background-color:#000;opacity:0.7;color:#fff;position:relative;left:121px;-moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px;box-shadow:2px 2px 10px #000;}
+
+    #yazi li{width:559px;height:45px;padding-left:10px;padding-top:5px;}
+    
+    #tumhaber{float:right;right: -5px; position: relative;}
+    #tumhaber a{padding:0px 5px;margin:5px;background: #777;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;width:85px;height:15px;cursor:pointer;color:#fff;text-decoration:none;}
+    
+    #ileri{padding-top:7px;font-size:20px;font-weight:bold;text-align:center;color:#fff;width:30px;height:23px;background-color:#000;opacity:0.5;-moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius: 15px;position:relative;left:661px;}
+    #geri{left:115px;padding-top:7px;font-size:20px;font-weight:bold;text-align:center;color:#fff;width:30px;height:23px;background-color:#000;opacity:0.5;-moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius: 15px;position:relative;}
+    #ileri:hover{opacity:1;cursor:pointer;}
+    #geri:hover{opacity:1;cursor:pointer;}
+    
+    #bbb{width:275px;height:324px;float:right;}
+    
+@media screen and  (min-width: 1024px) {#top{padding:0;background:none;height:324px;} #haberbant{width:700px;height:324px;overflow:hidden;float:left;}#ccc{display:none;}}
+@media screen and  (min-width: 768px) and (max-width: 1023px) {#resim img{height:411px;} #haberbant{height:491px;overflow:hidden;float:left;}#top{height:570px;}#aaa{width:730px;}#bbb{display:none;}#ccc img{width:236px;float:left;margin-left:10px}#resim img{width:730px;}#icerik{width:728px;margin:0;margin:0 auto;clear:both;}#icerik li{width:102px;float:left;padding:0;padding-top:10px;padding-left:0px;margin:0 0 0 54px;} #yazi{clear:both;width:730px;left:0;}#yazi li{width:700px;}#ileri{left:700px;}#geri{left:0;}}
+@media screen and  (min-width: 600px) and (max-width: 767px) { #resim img{height:315px;} #haberbant{height:395px;overflow:hidden;float:left;}#top{height:515px;}#aaa{width:560px;}#bbb{display:none;}#ccc img{width:180px;float:left;margin-left:10px}#resim img{width:560px;}#icerik{width:560px;margin:0;margin:0 auto;clear:both;}#icerik li{width:102px;float:left;padding:0;padding-top:10px;padding-left:0px;margin:0 0 0 12px;} #yazi{clear:both;width:560px;left:0;}#yazi li{width:530px;}#ileri{left:530px;}#geri{left:0;}}
+@media screen and  (min-width: 480px) and (max-width: 599px) { #resim img{height:247px;} #haberbant{height:318px;overflow:hidden;float:left;}#top{height:555px;}#aaa{width:440px;}#bbb{display:none;}#ccc img{width:140px;float:left;margin-left:10px}#resim img{width:440px;}#icerik{width:440px;clear:both;}#icerik li img{width:80px;height:50px;} #icerik li{height:50px;width:82px;float:left;padding:0;padding-top:10px;margin:0 0 0 7px;} #yazi{clear:both;width:440px;left:0;}#yazi li{width:410px;}#ileri{left:410px;}#geri{left:0;}}
+@media screen and  (max-width: 479px) { #resim img{height:157px;}  #haberbant{height:257px;overflow:hidden;float:left;}#top{height:490px;}#aaa{width:260px;margin-bottom:10px;}#bbb{display:none;}#ccc img{width:260px;height:60px;float:left;margin-bottom:5px;}#resim img{width:260px;}#icerik{clear:both;display:none}#yazi{clear:both;width:260px;height:80px;-moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius: 15px;left:0;}#yazi li{width:260px;height:80px;}#ileri{left:230px;}#geri{left:0;}.next {margin-right: 16px !important;}}
+
+/* Loading */
+.loading1 #slider1 {opacity: 0;display:none;}
+.loading1 #carousel {opacity: 0;display:none;}
+.loading1 #wrapper {opacity: 0;display:none;}
+.loading1 #haber {opacity: 0;display:none;}
+.loading1:before  { content: 'Yukleniyor...'; display:block;margin: 0px; text-align: center; color: #000; font-size: 20px; opacity: 0.4; }
+.box1 {
+	display:none;
+	padding:0px 10px 20px 10px;
+	margin:0px 0 15px 0;
+	background:#000;
+	background: rgba(255,255,255,1);
+	-pie-background: rgba(255,255,255,1);
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	behavior: url(http://www.meb.gov.tr/www/css/styles/pie.htc);
+}
+
+.box2 {
+	padding:0px 10px 10px 10px;
+	margin:0px 0 0px 0;
+	background:#FFF;
+	background: rgba(255, 255, 255, 1);
+	-pie-background: rgba(255, 255, 255, 1);
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	behavior: url(http://www.meb.gov.tr/www/css/styles/pie.htc);
+}
+
+.box1 img{
+padding:3px;
+margin:3px;
+background: #777;
+-pie-background: #777;
+-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+width:11px;
+height:11px;
+cursor:pointer;
+}
+
+	.box2 table 
+{
+	margin-left:5px;
+	margin-right:5px;
+	width:100%;
+}
+
+.box2 table td 
+{			
+	padding:5px;
+}
+.wrapper {
+width:100%;
+margin:0 0 0 0px;
+padding:0 0 0 0px;
+}
+.list_carousel {
+	margin: 0 30px 0 33px;
+} 
+.list_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+.list_carousel li {	
+
+	padding: 0;
+	margin: 0px;
+	display: block;
+	float: left;
+}	
+.list_carousel li img{
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+, IE10 */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+    -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
+    -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+.list_carousel li img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0%);
+}
+/*slider*/
+.list_carousel ul{list-style:none}
+.list_carousel{width:912px;height:85px;overflow:hidden}
+.list_carousel ul li{width:215px;height:85px;float:left}
+.list_carousel ul{overflow:hidden !important}
+.list_carouselButton{text-align:right;margin-top:5px}
+.list_carouselButton a{background:#333;color:white;text-decoration:none;padding:3px 7px}
+/*bitiþ*/
+.pad{padding-left:0px;}
+.prev {
+	width:24px;
+	height:24px;
+	float: left;
+	margin-left:0px;
+	margin-top: -50px;
+	background: url(../img/left.png) no-repeat;
+}
+
+.next {
+	width:24px;
+	height:24px;
+	float: right;
+	margin-right:0px;
+	margin-top: -50px;
+	background: url(../img/right.png) no-repeat;
+	}
+	
+.prev:hover {
+	width:24px;
+	height:24px;
+	background: url(../img/left-hover.png) no-repeat;
+}
+
+.next:hover {
+	width:24px;
+	height:24px;
+	background: url(../img/right-hover.png) no-repeat;
+}
+/*tipbox*/
+.widget_links li a{
+	position:relative;
+}
+.widget_links .before{
+	position:absolute;
+	background:rgba(0,0,0,0.8);
+	color:#fff;
+	width:280px;
+	padding:10px 5px;
+	text-align:center;
+	z-index:1;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	left:50%;
+	margin-left:-138px;
+	top:91px;
+}
+.widget_links .after{
+	border:6px solid transparent;
+	position:absolute;
+	border-bottom-color:rgba(0,0,0,0.8);
+	left:10%;
+	bottom:-10px;
+	margin-left:-4px;
+}

@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'MEBHeadFont';
+	font-style: normal;
+	font-weight: 400;
+	src: url('HelveticaNeueLTPro_MdCn.eot'); /* IE9 Compat Modes */
+	src: url('HelveticaNeueLTPro_MdCn.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	    
+	     url('HelveticaNeueLTPro_MdCn.ttf')  format('truetype'), /* Safari, Android, iOS */
+	     url('HelveticaNeueLTPro_MdCn.svg#svgFontName') format('svg'); /* Legacy iOS */
+	}

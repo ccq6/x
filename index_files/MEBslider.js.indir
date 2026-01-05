@@ -1,0 +1,471 @@
+jQuery(window).load(function () {
+  $("#loading2").removeClass("loading1");
+  return false;
+});
+$(document).ready(function () {
+  /*
+   * Copyright (c) 2013 MEB
+   * DUYURU JQuery
+   */
+  $(".box1").hide();
+
+  /* A�ma - Kapatma */
+  //jQuery('.box1').fadeIn(3000); // Duyuruyu kapatmak i�in bu sat�r�n �n�ne // yaz�n�z.
+
+  /* Duyuru Kodu */
+  //$(".box2").html("<table><tr><td><a href=#>Deneme</a> Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme</td></tr></table>");
+  //$(".box2").html("	<div class='box custom_box'>Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme Deneme</div>");
+  //$(".box2").html("	<div  style='text-align:center;'><a href='#' target='_blank' ><img src='/popup/kurbanbayrami.jpg' style='height:600px;width:429px;'></a></div>");
+  /* Video Kodu */
+  //$(".box2").html('<table><tr><td align="center"><video controls="controls" ><source src="http://www.meb.gov.tr/haberler/video/2014yeniogretim/Milli-egitim-Bakani-yeniyi-lkutlamasi.mp4" type="video/mp4" /></video></td></tr></table>');
+
+  /* T�klay�nca Kapatma */
+  $(".box1").click(function () {
+    jQuery(".box1").fadeOut(1000);
+    $("video").each(function () {
+      this.pause();
+    });
+  });
+  $(".box2").click(function (e) {
+    e.stopPropagation();
+  });
+
+  /* A�ma - Kapatma */
+
+  var resim_efekt_sure = 250; // resim efektin ge�i� s�resi 1000=1saniye
+  var yazi_efekt = "clip"; // yazi efekt tipi blind,bounce,clip,drop,explode,fold,highlight,puff,pulsate,scale,shake,size,slide
+  var yazi_efekt_sure = 500; // yazi efektin ge�i� s�resi 1000=1saniye
+  var otogecis_sure = 7000; // otomatik ge�i� s�resi 1000=1 saniye
+  $.yaziYer = function () {
+    $("#aaa").css("height", $("#resim li img").height() + "px");
+    $("#aaa").css("overflow", "hidden");
+    var geri_yer =
+      "-" +
+      ($("#aaa").height() / 2 +
+        $("#yazi").height() +
+        $("#icerik").height() +
+        60);
+    var ileri_yer =
+      "-" +
+      ($("#aaa").height() / 2 +
+        $("#yazi").height() +
+        $("#icerik").height() +
+        90);
+    var yazi_yer = "-" + ($("#yazi").height() + $("#icerik").height() + 30);
+    if ($(window).width() > 1006) {
+      geri_yer = "-" + ($("#aaa").height() / 2 + $("#yazi").height() + 60);
+      ileri_yer = "-" + ($("#aaa").height() / 2 + $("#yazi").height() + 90);
+      yazi_yer = "-" + ($("#yazi").height() + 25);
+    }
+    if ($(window).width() < 463) {
+      geri_yer = "-" + ($("#aaa").height() / 2 + $("#yazi").height() + 50);
+      ileri_yer = "-" + ($("#aaa").height() / 2 + $("#yazi").height() + 80);
+      yazi_yer = 0;
+    }
+    $("#ileri").css("top", ileri_yer + "px");
+    $("#geri").css("top", geri_yer + "px");
+    $("#yazi").css("top", yazi_yer + "px");
+  };
+  $("#icerik li:first").css("margin-left", 0);
+  $("#icerik li:first").addClass("aktif");
+  $("#ccc img:first").css("margin-left", 0);
+  var yenideger = 0;
+  var sayi = 0;
+  var slayt_sayisi = $("#resim li").size();
+  var fireFox = 0;
+  if (BrowserDetect.browser == "Firefox") {
+    fireFox = 2;
+    $("#resim li img").width($("#resim li img").width() + 18);
+    $("ol#icerik img").css("margin-left", 0);
+  }
+  var resim_boyut = $("#resim li img").width();
+  var toplam_genislik = slayt_sayisi * resim_boyut;
+  $("#resim").css("width", toplam_genislik + "px");
+  $.yaziYer();
+  $(window).resize(function () {
+    $("#icerik li:first").css("margin-left", 0);
+    $.yaziYer();
+    if (BrowserDetect.browser == "Firefox") {
+      $("#resim li img").css("width", "100%");
+      fireFox = 18;
+    }
+    liwidth = $("#resim li img").width();
+    //liIndex=1;
+    toplamwidth = liwidth * toplamLi * 2;
+    $("ol#resim").css("width", toplamwidth + "px");
+    $("ol#resim").css("marginLeft", "-" + (liwidth - fireFox) + "px");
+    $.yaziEffect(sayi);
+  });
+  var toplamLi = $("ol#resim li").size();
+  var liwidth = resim_boyut;
+  var liIndex = 1;
+  //var deger=0;
+  var toplamwidth = liwidth * toplamLi * 2;
+  $("ol#resim").css("width", toplamwidth + "px");
+  $("ol#resim").css("marginLeft", "-" + (liwidth - fireFox) + "px");
+  var clone;
+  if (toplamLi < 3) {
+    clone = $("ol#resim li:last").clone();
+    $("ol#resim").prepend(clone);
+  } else {
+    clone = $("ol#resim li:last").clone();
+    $("ol#resim").prepend(clone);
+    $("ol#resim li:last").remove();
+  }
+  $("#icerik li").mouseenter(function () {
+    var index = $(this).index() + 1;
+    var yon = liIndex - index;
+    if (yon > 0) {
+      if (liIndex == toplamLi && index == 1) {
+        $("#ileri").click();
+      } else {
+        for (i = 0; i < yon; i++) {
+          $("#geri").click();
+        }
+      }
+    } else {
+      if (index == toplamLi && liIndex == 1) {
+        $("#geri").click();
+      } else {
+        for (i = 0; i < -yon; i++) {
+          $("#ileri").click();
+        }
+      }
+    }
+    $.yaziEffect($(this).index());
+  });
+  $("#icerik li").click(function () {
+    var index = $(this).index() + 1;
+    var yon = liIndex - index;
+    if (yon > 0) {
+      if (liIndex == toplamLi && index == 1) {
+        $("#ileri").click();
+      } else {
+        for (i = 0; i < yon; i++) {
+          $("#geri").click();
+        }
+      }
+    } else {
+      if (index == toplamLi && liIndex == 1) {
+        $("#geri").click();
+      } else {
+        for (i = 0; i < -yon; i++) {
+          $("#ileri").click();
+        }
+      }
+    }
+    $.yaziEffect($(this).index());
+  });
+  $.yaziEffect = function (deger) {
+    if (deger > slayt_sayisi - 1) {
+      deger = 0;
+    } else if (deger < 0) {
+      deger = slayt_sayisi - 1;
+    }
+    $("#icerik li").removeClass("aktif");
+    $("#icerik li:eq(" + deger + ")").addClass("aktif");
+    $("#yazi li").hide();
+    $("#yazi li:eq(" + deger + ")").show(yazi_efekt, yazi_efekt_sure);
+    sayi = deger;
+  };
+  $("#ileri").click(function () {
+    if (liIndex > toplamLi - 1) {
+      liIndex = 0;
+    }
+    liIndex++;
+    if (toplamLi < 3) {
+      clone = $("ol#resim li").eq(1).clone();
+    } else {
+      clone = $("ol#resim li").eq(0).clone();
+    }
+    $("ol#resim").append(clone);
+    $("ol#resim li").eq(0).remove();
+    $("ol#resim").css("marginLeft", "0px");
+    $("ol#resim").animate(
+      { marginLeft: "-" + (liwidth - fireFox) + "px" },
+      resim_efekt_sure
+    );
+    $.yaziEffect(sayi + 1);
+    return false;
+  });
+
+  $("#geri").click(function () {
+    if (liIndex == 1) {
+      liIndex = toplamLi + 1;
+    }
+    liIndex--;
+    if (toplamLi < 3) {
+      clone = $("ol#resim li").eq(1).clone();
+    } else {
+      clone = $("ol#resim li:last").clone();
+    }
+    $("ol#resim").prepend(clone);
+    if (toplamLi == 1) {
+      $("ol#resim").append(clone);
+      $("ol#resim li:last").remove();
+      $("ol#resim").css("marginLeft", "-" + (liwidth - fireFox) + "px");
+      $("ol#resim").animate({ marginLeft: "0px" }, resim_efekt_sure);
+    } else {
+      $("ol#resim li:last").remove();
+      $("ol#resim").css("marginLeft", "-" + (liwidth - fireFox) * 2 + "px");
+      $("ol#resim").animate(
+        { marginLeft: "-" + (liwidth - fireFox) + "px" },
+        resim_efekt_sure
+      );
+    }
+    $.yaziEffect(sayi - 1);
+    return false;
+  });
+  /*			
+$("#haberbant").on("swipeleft",function(){
+ $('#geri').click();
+});
+	
+$("#haberbant").on("swiperight",function(){
+ $('#ileri').click();
+});
+*/
+  /*$("#haberbant").swipe( {
+		swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+		  if( direction=='right' ){
+			$('#geri').click();
+		  } 
+		  if( direction=='left' ){
+			$('#ileri').click();
+		  } 
+		},
+		 threshold:50
+	  });	*/
+  $otogecis = function () {
+    $("#ileri").click();
+  };
+  var calistir = setInterval("$otogecis()", otogecis_sure);
+
+  $("#haberbant").hover(
+    function () {
+      clearInterval(calistir);
+    },
+    function () {
+      calistir = setInterval("$otogecis()", otogecis_sure);
+    }
+  );
+  /*		
+	$(document).keydown(function(e) {
+		if((e.keyCode == 37)) {//geri
+			$('#geri').click();
+		} 
+	
+	   if ((e.keyCode == 39)) { //ileri
+			$('#ileri').click();
+		}
+		return false; 
+});
+	*/
+  ////scroll metodu////////////////////////////////////////////////////////
+  $(window).scroll(function () {
+    var theight = $(this).scrollTop();
+
+    if (theight > 45) {
+      $("div#menu").addClass("f-nav");
+    } else {
+      $("div#menu").removeClass("f-nav");
+    }
+  });
+
+  ////projeler slider////////////////////////////////////////////////////
+  var c_sure = 5000;
+  var c_toplamLi = $(".list_carousel ul li").size();
+  var c_liwidth = $(".list_carousel ul li").width();
+  var c_liheight = $(".list_carousel ul li").height();
+  var c_liIndex = 1;
+  var c_toplamWidth = c_liwidth * c_toplamLi * 2;
+  $(".list_carousel ul").css("width", c_toplamWidth + "px");
+  $(".list_carousel ul").css("marginLeft", "-" + c_liwidth + "px");
+  var c_clone;
+  c_clone = $(".list_carousel ul li:last").clone();
+  $(".list_carousel ul").prepend(c_clone);
+  $(".list_carousel ul li:last").remove();
+
+  if (Math.round($(".list_carousel").width() / c_liwidth) >= c_toplamLi) {
+    $(".list_carousel ul").css("marginLeft", "0px");
+    $("#list_carousel .next").hide();
+    $("#list_carousel .prev").hide();
+    $("#list_carousel #boxdown").hide();
+  }
+  $("#list_carousel .next").click(function () {
+    if (Math.round($(".list_carousel").width() / c_liwidth) < c_toplamLi) {
+      if (c_liIndex > c_toplamLi - 1) {
+        c_liIndex = 0;
+      }
+      c_liIndex++;
+      c_clone = $(".list_carousel ul li").eq(0).clone();
+      $(".list_carousel ul").append(c_clone);
+      $(".list_carousel ul li").eq(0).remove();
+      $(".list_carousel ul").css("marginLeft", "0px");
+      $(".list_carousel ul").animate(
+        { marginLeft: "-" + c_liwidth + "px" },
+        300
+      );
+    }
+    return false;
+  });
+  $("#list_carousel .prev").click(function () {
+    if (c_liIndex == 1) {
+      c_liIndex = c_toplamLi + 1;
+    }
+    c_liIndex--;
+    c_clone = $(".list_carousel ul li:last").clone();
+    $(".list_carousel ul").prepend(c_clone);
+    if (c_toplamLi == 1) {
+      $(".list_carousel ul").append(c_clone);
+      $(".list_carousel ul li:last").remove();
+      $(".list_carousel ul").css("marginLeft", "-" + c_liwidth + "px");
+      $(".list_carousel ul").animate({ marginLeft: "0px" }, 300);
+    } else {
+      $(".list_carousel ul li:last").remove();
+      $(".list_carousel ul").css("marginLeft", "-" + c_liwidth * 2 + "px");
+      $(".list_carousel ul").animate(
+        { marginLeft: "-" + c_liwidth + "px" },
+        300
+      );
+    }
+
+    return false;
+  });
+  $.list_carouselFunc = function () {
+    $("#list_carousel .next").click();
+  };
+  var c_don = setInterval("$.list_carouselFunc()", c_sure);
+  $("#list_carousel").hover(
+    function () {
+      clearInterval(c_don);
+    },
+    function () {
+      if (!slideStart) {
+        c_don = setInterval("$.list_carouselFunc()", c_sure);
+      }
+    }
+  );
+  var slideStart = false;
+
+  $("#list_carousel #boxdown").click(function () {
+    if (slideStart) {
+      $(".list_carousel").css("height", c_liheight + "px");
+      $(".list_carousel ul").css("width", c_toplamWidth + "px");
+      $(".list_carousel ul").css("marginLeft", "-" + c_liwidth + "px");
+      $("#list_carousel .next").show();
+      $("#list_carousel .prev").show();
+      $("#list_carousel #boxdown").removeClass("boxup");
+      $("#list_carousel #boxdown").addClass("boxdown");
+      slideStart = false;
+    } else {
+      var toplamHeight =
+        Math.ceil((c_toplamLi * c_liwidth) / $(".list_carousel").width()) *
+        c_liheight;
+      $(".list_carousel").css("height", toplamHeight + "px");
+      $(".list_carousel ul").css("marginLeft", "0px");
+      $(".list_carousel ul").css("width", $(".list_carousel").width() + "px");
+      $("#list_carousel .next").hide();
+      $("#list_carousel .prev").hide();
+      $("#list_carousel #boxdown").removeClass("boxdown");
+      $("#list_carousel #boxdown").addClass("boxup");
+      slideStart = true;
+    }
+  });
+  /* 
+$(".list_carousel").on("swipeleft",function(){
+ $('.next').click();
+});
+	
+$(".list_carousel").on("swiperight",function(){
+ $('.prev').click();
+});
+*/
+  $(".list_carousel").swipe({
+    swipe: function (
+      event,
+      direction,
+      distance,
+      duration,
+      fingerCount,
+      fingerData
+    ) {
+      if (direction == "right") {
+        $(".prev").click();
+      }
+      if (direction == "left") {
+        $(".next").click();
+      }
+    },
+    threshold: 50,
+  });
+
+  /////////////////////////////////////resize
+  $.openBoxResize = function () {
+    if (slideStart) {
+      $(".list_carousel ul").css("width", $(".list_carousel").width() + "px");
+      toplamHeight =
+        Math.ceil((c_toplamLi * c_liwidth) / $(".list_carousel").width()) *
+        c_liheight;
+      $(".list_carousel").css("height", toplamHeight + "px");
+    }
+    if (Math.round($(".list_carousel").width() / c_liwidth) >= c_toplamLi) {
+      $(".list_carousel ul").css("marginLeft", "0px");
+      $("#list_carousel .next").hide();
+      $("#list_carousel .prev").hide();
+      $("#list_carousel #boxdown").hide();
+    } else {
+      $("#list_carousel .next").show();
+      $("#list_carousel .prev").show();
+      $("#list_carousel #boxdown").show();
+    }
+  };
+  $.list_carousel_resize = function () {
+    if ($(window).width() > 1024) {
+      $("#list_carousel").css("width", "980px");
+      $(".list_carousel").css("width", "912px");
+      $.openBoxResize();
+    }
+    if ($(window).width() < 1007) {
+      $("#list_carousel").css("width", "750px");
+      $(".list_carousel").css("width", "650px");
+      $.openBoxResize();
+    }
+    if ($(window).width() < 752) {
+      $("#list_carousel").css("width", "580px");
+      $(".list_carousel").css("width", "480px");
+      $.openBoxResize();
+    }
+    if ($(window).width() < 583) {
+      $("#list_carousel").css("width", "460px");
+      $(".list_carousel").css("width", "360px");
+      $.openBoxResize();
+    }
+    if ($(window).width() < 463) {
+      $("#list_carousel").css("width", "300px");
+      $(".list_carousel").css("width", "200px");
+      $.openBoxResize();
+    }
+  };
+  $.list_carousel_resize();
+  $(window).resize(function () {
+    $.list_carousel_resize();
+  });
+
+  /*tipbox*/
+  $(".widget_links li a[data-bottom]").hover(
+    function () {
+      $(this).append('<div class="before"></div>');
+      $(this).find(".before").text($(this).attr("data"));
+      $(this).append('<div class="after"></div>');
+      $(this).find(".after").hide();
+      $(this).find(".before").hide();
+      $(this).find(".after").slideToggle();
+      $(this).find(".before").slideToggle();
+    },
+    function () {
+      $(this).find(".before").remove();
+      $(this).find(".after").remove();
+    }
+  );
+});

@@ -1,0 +1,63 @@
+$( document).ready(function() {
+		$( "#resim1").mouseover(function(){ $( "#resim1").animate({"opacity":"0.5"},50); $( "#resim1").animate({"opacity":"1"},100);	});
+		$( "#resim2").mouseover(function(){ $( "#resim2").animate({"opacity":"0.5"},50); $( "#resim2").animate({"opacity":"1"},100);	});
+		$( "#resim3").mouseover(function(){ $( "#resim3").animate({"opacity":"0.5"},50); $( "#resim3").animate({"opacity":"1"},100);	});
+		$( "#resim4").mouseover(function(){ $( "#resim4").animate({"opacity":"0.5"},50); $( "#resim4").animate({"opacity":"1"},100);	});
+		
+		var duyuru_yukseklik=$(".duyurular").height();
+		var sinav_yukseklik=$(".sinavlar").height();
+			if(duyuru_yukseklik>sinav_yukseklik){$(".sinavlar").css("height",duyuru_yukseklik+20);$(".duyurular").css("height",duyuru_yukseklik+20);}
+			else if(duyuru_yukseklik<sinav_yukseklik){$(".duyurular").css("height",sinav_yukseklik+20);$(".sinavlar").css("height",sinav_yukseklik+20);}
+			else{$(".duyurular").css("height",duyuru_yukseklik+20);$(".sinavlar").css("height",sinav_yukseklik+20);}
+				
+				var li_sayisi=$('#foo1 li').size();
+				var genislik_boyut=$("#container").width();
+				var yukseklik=85;
+				var genislik=($("#container").width());
+				var sonuc = parseInt(genislik_boyut/152);
+				var ek_satir=li_sayisi%sonuc;
+				var satir=parseInt(li_sayisi/sonuc);
+				if(ek_satir>0){satir=satir+1;}
+				
+				if(satir==1){$(".boxdown").css("display","none");}
+
+				
+	$(window).resize(function(){
+	$(".sinavlar").removeAttr("style");
+	$(".duyurular").removeAttr("style");
+	var duyuru_yukseklik=$(".duyurular").height();
+	var sinav_yukseklik=$(".sinavlar").height();
+	if(duyuru_yukseklik>sinav_yukseklik){$(".sinavlar").css("height",duyuru_yukseklik);$(".duyurular").css("height",duyuru_yukseklik);}
+	else if(duyuru_yukseklik<sinav_yukseklik){$(".duyurular").css("height",sinav_yukseklik);$(".sinavlar").css("height",sinav_yukseklik);}
+	else{$(".duyurular").css("height",duyuru_yukseklik);$(".sinavlar").css("height",sinav_yukseklik);}
+
+	if ($( document ).width() >1023) {
+	$('#submenu').removeClass("dropdown");
+	$('#submenu').addClass("dropdown-submenu");
+	$('#submenu1').removeClass("dropdown");
+	$('#submenu1').addClass("dropdown-submenu");
+		} else {
+		$('#submenu').removeClass("dropdown-submenu");
+				$('#submenu').addClass("dropdown");
+						$('#submenu1').removeClass("dropdown-submenu");
+						$('#submenu').addClass("dropdown");
+		}
+		
+		genislik=($("#container").width());
+      
+	});
+
+	
+		if ($( document ).width() >1023) {
+			$('#submenu').removeClass("dropdown");
+			$('#submenu').addClass("dropdown-submenu");
+			$('#submenu1').removeClass("dropdown");
+			$('#submenu1').addClass("dropdown-submenu");
+		} else {
+			$('#submenu').removeClass("dropdown-submenu");
+			$('#submenu').addClass("dropdown");
+			$('#submenu1').removeClass("dropdown-submenu");
+			$('#submenu').addClass("dropdown");
+		}
+
+});
